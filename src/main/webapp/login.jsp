@@ -22,10 +22,12 @@
     div.login-form img {
       display: block; margin: 40px auto; 
     }
-    div.login-form input { padding: 12px; margin-bottom: 7px; width: 250px; 
+    div.login-form input { padding: 0.7em 3em; margin-bottom: 7px; width: 250px; 
         border: 2px solid #dee; border-radius: 8px; }
     div.login-form input:focus { border: 2px solid #aaf; outline: none; }
     div.login-form .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
+    div.input { position: relative; display: inline-block; }
+    div.input i { position: absolute; left: 15px; top: 0.7em; color: gray; }
   </style>
 </head>
 
@@ -44,8 +46,14 @@
     <div class="login-body">
       <img src="/res/images/skhu_logo.png" style="width: 200px;" />
       <form method="post" action="main.jsp">
-        <input type="text" name="loginName" placeholder="아이디" /> <br/>
-        <input type="password" name="password" placeholder="비밀번호" /> <br/>
+        <div class="input">
+          <i class="fa fa-user fa-lg"></i>
+          <input type="text" name="loginName" placeholder="아이디" />
+        </div> <br />
+        <div class="input">
+            <i class="fa fa-key fa-lg"></i>
+            <input type="password" name="password" placeholder="비밀번호" />
+        </div> <br />
         <button type="submit" class="btn2 blue"><i class="fa fa-sign-in"></i> 로그인</button>
         <a href="register.jsp" class="btn2"><i class="fa fa-user-plus"></i> 회원가입</a>
       </form>
