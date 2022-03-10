@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>쇼프 게시판</title>
   <link rel="stylesheet"  href="/res/css/common2.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
   <style>
     div.container2 { padding-top: 100px; }
     div.login-form {
@@ -24,7 +25,7 @@
     div.login-form input { padding: 12px; margin-bottom: 7px; width: 250px; 
         border: 2px solid #dee; border-radius: 8px; }
     div.login-form input:focus { border: 2px solid #aaf; outline: none; }
-    div.login-form .btn2 { margin-top: 10px; padding: 0.7em 2em; }
+    div.login-form .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
   </style>
 </head>
 
@@ -45,8 +46,8 @@
       <form method="post" action="main.jsp">
         <input type="text" name="loginName" placeholder="아이디" /> <br/>
         <input type="password" name="password" placeholder="비밀번호" /> <br/>
-        <button type="submit" class="btn2 blue">로그인</button>
-        <a href="register.jsp" class="btn2">회원가입</a>
+        <button type="submit" class="btn2 blue"><i class="fa fa-sign-in"></i> 로그인</button>
+        <a href="register.jsp" class="btn2"><i class="fa fa-user-plus"></i> 회원가입</a>
       </form>
     </div>
   </div>  
