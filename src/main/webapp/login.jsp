@@ -55,7 +55,7 @@
             <input type="password" name="password" placeholder="비밀번호" />
         </div> <br />
         <button type="submit" class="btn2 blue"><i class="fa fa-sign-in"></i> 로그인</button>
-        <a href="register.jsp" class="btn2"><i class="fa fa-user-plus"></i> 회원가입</a>
+        <a href="signup.jsp" class="btn2"><i class="fa fa-user-plus"></i> 회원가입</a>
       </form>
     </div>
   </div>  

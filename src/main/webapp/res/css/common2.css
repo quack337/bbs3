@@ -65,10 +65,15 @@ textarea { border: 1px solid #aaa; padding: 6px; }
 }
 .btn2.red:active { background: #800; }
 
-.btn2.cyan { 
-    color: white; border: none; background: linear-gradient(#aff, #088); 
+.btn2.yellow { 
+    color: black; border: 1px solid #eec; background: linear-gradient(#ffc, #dd0); 
 }
-.btn2.cyan:active { background: #088; }
+.btn2.yellow:active { background: #dd0; }
+
+.btn2.cyan { 
+    color: white; border: none; background: linear-gradient(#0ee, #099); 
+}
+.btn2.cyan:active { background: #099; }
 
 .right { float: right; }
 
