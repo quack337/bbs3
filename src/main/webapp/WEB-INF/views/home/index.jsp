@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:url var="R" value="/" />
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>쇼프 게시판</title>
-  <link rel="stylesheet"  href="/res/css/common2.css" />
+  <link rel="stylesheet"  href="${R}res/css/common2.css" />
   <style>
     div.container2 { padding: 20px; }
     div.nav { 
@@ -42,7 +44,13 @@
 <div class="main-menu">
   <div>
     <h1>소프 게시판</h1>
-    <a class="right" href="/login.jsp">로그아웃</a>
+    <sec:authorize access="not authenticated">  
+      <a class="right" href="${R}login">로그인</a>
+      <a class="right" href="${R}signUp">회원가입</a>                  
+    </sec:authorize>
+    <sec:authorize access="authenticated">
+      <a class="right" href="${R}logout_processing">로그아웃</a>
+    </sec:authorize>
   </div>
 </div>
 
@@ -110,14 +118,15 @@
       </select>
     
       <ul class="pagination">
-        <li class='active'>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>Next</li>
+        <li class='active'>1</li><li>2</li><li>3</li><li>4</li><li>5</li>
+        <li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>Next</li>
       </ul>    
     </div>
   </div>  
   
   <div class="footer">
     <div style="float: left; padding-right: 20px;">
-      <img src="/res/images/skhu.png" style="width: 200px; "/>
+      <img src="${R}res/images/skhu.png" style="width: 200px; "/>
     </div>
     <div>152-716 서울시 구로구 연동로 320 / 지하철 1, 7호선 온수(성공회대입구)역 T.02-2610-4114</div>
     <div style="margin-top: 5px;">Copyright (c) Sung-Kong-Hoe Univisity. All rights reserved.</div>
