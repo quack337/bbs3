@@ -36,7 +36,6 @@
 </head>
 
 <body>
-
 <%@ include file="/WEB-INF/views/include/mainMenu.jsp" %>
 
 <div class="container2">
@@ -66,6 +65,5 @@
   
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </div>
-
 </body>
 </html>

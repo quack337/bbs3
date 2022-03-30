@@ -10,39 +10,16 @@
   <link rel="stylesheet"  href="${R}res/css/common2.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
   <style>
-    div.container2 { padding: 20px; }
-    div.nav { 
-      padding: 5px; border-bottom: 1px solid #ddd; margin-bottom: 25px;
-    }
-    div.panel {
-      width: 600px; margin-bottom: 50px;
-      border: 1px solid #ddd; border-radius: 5px;
-      box-shadow: 3px 3px 3px #ccc;
-    }
-    div.panel h1 {
-      margin: 0; font-size: 14pt; font-weight: bold; 
-      background:linear-gradient(90deg, #def, #bcd); padding: 10px 15px 7px 15px;
-    }
-    div.panel-body {
-      padding: 20px; font-size:
-    }
-    
-    div.panel input { padding: 0.7em 1em; margin-bottom: 7px; width: 300px; 
-      border: 2px solid #dee; border-radius: 8px; }
-    div.panel input:focus { border: 2px solid #aaf; outline: none; }
+    div.panel {width: 600px;
     div.panel .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
-
-    p { font-size: 14pt; }    
-   
+    p { font-size: 14pt; }      
   </style>
 </head>
 
 <body>
-
 <%@ include file="/WEB-INF/views/include/mainMenu.jsp" %>
 
 <div class="container2">
-  
   <div class="nav">
     &gt; 회원가입
   </div>
@@ -54,12 +31,10 @@
     <p><i class="fa fa-user-plus fa-lg"></i> 회원가입이 성공했습니다</p>
     
     <a href="${R}login" class="btn2"> 로그인 하기</a>
-   
     </div>
   </div>  
   
   <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </div>
-
 </body>
 </html>

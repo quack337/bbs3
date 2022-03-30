@@ -8,24 +8,8 @@
   <title>쇼프 게시판</title>
   <link rel="stylesheet"  href="${R}res/css/common2.css" />
   <style>
-    div.container2 { padding: 20px; }
-    div.nav { 
-      padding: 5px; border-bottom: 1px solid #ddd; margin-bottom: 25px;
-    }
-    div.panel {
-      width: 1100px; margin-bottom: 50px;
-      border: 1px solid #ddd; border-radius: 5px;
-      box-shadow: 3px 3px 3px #ccc;
-    }
-    div.panel h1 {
-      margin: 0; font-size: 14pt; font-weight: bold; 
-      background:linear-gradient(90deg, #def, #bcd); padding: 10px 15px 7px 15px;
-    }
-    div.panel-body {
-      padding: 20px; font-size:
-    }
-    select:nth-child(1) { margin-right: 100px; }
-    
+    div.panel { width: 1100px; }
+    select:nth-child(1) { margin-right: 100px; }    
     table {     
       width: 100%; margin: 10px 0px 20px 0px;
       border-collapse: collapse;
@@ -39,7 +23,6 @@
 </head>
 
 <body>
-
 <%@ include file="/WEB-INF/views/include/mainMenu.jsp" %>
 
 <div class="container2">
