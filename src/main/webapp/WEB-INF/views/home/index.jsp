@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:url var="R" value="/" />
 <!DOCTYPE html PUBLIC>
 <html>
@@ -41,18 +40,7 @@
 
 <body>
 
-<div class="main-menu">
-  <div>
-    <h1>소프 게시판</h1>
-    <sec:authorize access="not authenticated">  
-      <a class="right" href="${R}login">로그인</a>
-      <a class="right" href="${R}signUp">회원가입</a>                  
-    </sec:authorize>
-    <sec:authorize access="authenticated">
-      <a class="right" href="${R}logout_processing">로그아웃</a>
-    </sec:authorize>
-  </div>
-</div>
+<%@ include file="/WEB-INF/views/include/mainMenu.jsp" %>
 
 <div class="container2">
 
@@ -124,13 +112,7 @@
     </div>
   </div>  
   
-  <div class="footer">
-    <div style="float: left; padding-right: 20px;">
-      <img src="${R}res/images/skhu.png" style="width: 200px; "/>
-    </div>
-    <div>152-716 서울시 구로구 연동로 320 / 지하철 1, 7호선 온수(성공회대입구)역 T.02-2610-4114</div>
-    <div style="margin-top: 5px;">Copyright (c) Sung-Kong-Hoe Univisity. All rights reserved.</div>
-  </div>  
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </div>
 
 </body>
