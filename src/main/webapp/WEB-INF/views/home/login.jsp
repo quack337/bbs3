@@ -12,7 +12,7 @@
   <style>
     div.container2 { padding-top: 100px; }
     div.login-form {
-      width: 800px; height: 500px;
+      width: 800px; min-height: 500px;
       background-color: #dee;
       margin: 0px auto 200px auto; text-align: center;
       border: 1px solid #ddd; border-radius: 5px;
@@ -31,6 +31,7 @@
     div.login-form .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
     div.input { position: relative; display: inline-block; }
     div.input i { position: absolute; left: 15px; top: 0.7em; color: gray; }
+    div.error { color: #c00; margin-top: 10px; }
   </style>
 </head>
 
@@ -60,6 +61,9 @@
         </div> <br />
         <button type="submit" class="btn2 blue"><i class="fa fa-sign-in"></i> 로그인</button>
         <a href="${R}signUp" class="btn2"><i class="fa fa-user-plus"></i> 회원가입</a>
+        <c:if test="${ param.error ne null }">
+          <div class="error">아이디 또는 비밀번호가 일치하지 않습니다</div> 
+        </c:if>
       </form>
     </div>
   </div>  
