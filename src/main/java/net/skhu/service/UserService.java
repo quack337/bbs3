@@ -3,11 +3,15 @@ package net.skhu.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import net.skhu.entity.User;
+import net.skhu.model.Pagination;
 import net.skhu.model.UserSignUp;
 import net.skhu.repository.UserRepository;
 
@@ -49,6 +53,28 @@ public class UserService {
     public void save(UserSignUp userSignUp) {
         User user = createEntity(userSignUp);
         userRepository.save(user);
+    }
+
+    private static Sort[] orderBy = new Sort[] {
+        Sort.by(Sort.Direction.DESC, "id"),
+        Sort.by(Sort.Direction.DESC, "id"),
+        Sort.by(Sort.Direction.ASC, "loginName"),
+        Sort.by(Sort.Direction.ASC, "name")
+    };
+
+    public List<User> findAll(Pagination pagination) {
+        int pg = pagination.getPg() - 1, sz = pagination.getSz(),
+            si = pagination.getSi(), od = pagination.getOd();
+        String st = pagination.getSt();
+        Page<User> page = null;
+        if (si == 1)
+            page = userRepository.findByLoginNameStartsWith(st, PageRequest.of(pg, sz, orderBy[od]));
+        else if (si == 2)
+            page = userRepository.findByNameStartsWith(st, PageRequest.of(pg, sz, orderBy[od]));
+        else
+            page = userRepository.findAll(PageRequest.of(pg, sz, orderBy[od]));
+        pagination.setRecordCount((int)page.getTotalElements());
+        return page.getContent();
     }
 
 }
