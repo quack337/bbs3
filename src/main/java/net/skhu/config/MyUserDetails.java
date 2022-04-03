@@ -27,7 +27,7 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(User user) {
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         for (UserRole userRole : user.getUserRoles())
-            authorities.add(new SimpleGrantedAuthority(userRole.getRole()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + userRole.getRole()));
         this.username = user.getLoginName();
         this.password = user.getPassword();
         this.isEnabled = user.isEnabled();

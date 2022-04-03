@@ -88,8 +88,8 @@
               <td>${ user.email }</td>
               <td>${ user.enabled ? "활성" : "" }</td>
               <td>
-                <c:forEach var="userRole" items="${ user.userRoles }">
-                  <span>${ userRole.role }</span>
+                <c:forEach var="role" items="${ user.roles }">
+                  <span>${ role }</span>
                 </c:forEach>
               </td>
             </tr>
