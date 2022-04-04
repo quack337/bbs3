@@ -104,8 +104,9 @@ div.footer {
     border-top:1px solid #eee; padding:30px; font-size:10pt; color:#888; width: 100%;
 }
 
-.data-url:hover { cursor: pointer; }
-   
+[data-url]:hover { cursor: pointer; }
+tr[data-url]:hover { background-color: #ffc; }
+
 /*******/
 div.container2 { padding: 20px; }
 div.nav { 

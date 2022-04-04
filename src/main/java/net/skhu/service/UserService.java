@@ -2,6 +2,8 @@ package net.skhu.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,23 +17,26 @@ import net.skhu.entity.User;
 import net.skhu.entity.UserRole;
 import net.skhu.model.Pagination;
 import net.skhu.model.UserDto;
+import net.skhu.model.UserEdit;
 import net.skhu.model.UserSignUp;
 import net.skhu.repository.UserRepository;
+import net.skhu.repository.UserRoleRepository;
 
 @Service
 public class UserService {
 
     @Autowired UserRepository userRepository;
+    @Autowired UserRoleRepository userRoleRepository;
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired MyModelMapper modelMapper;
 
-    public UserDto findById(int id) {
+    public UserEdit findById(int id) {
         var userEntity = userRepository.findById(id).get();
-        var userDto = modelMapper.map(userEntity, UserDto.class);
+        var userEdit = modelMapper.map(userEntity, UserEdit.class);
         List<UserRole> userRole = userEntity.getUserRoles();
         String[] roles = userRole.stream().map(UserRole::getRole).toArray(String[]::new);
-        userDto.setRoles(roles);
-        return userDto;
+        userEdit.setRoles(roles);
+        return userEdit;
     }
 
     public boolean hasErrors(UserSignUp userSignUp, BindingResult bindingResult) {
@@ -49,9 +54,37 @@ public class UserService {
         return false;
     }
 
+    public boolean hasErrors(UserEdit userEdit, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return true;
+        User user = userRepository.findByLoginName(userEdit.getLoginName());
+        if (user != null && user.getId() != userEdit.getId()) {
+            bindingResult.rejectValue("loginName", null, "사용자 아이디가 중복됩니다.");
+            return true;
+        }
+        return false;
+    }
+
     public void save(UserSignUp userSignUp) {
         User user = modelMapper.map(userSignUp, User.class);
         user.setPassword(passwordEncoder.encode(userSignUp.getPasswd1()));
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void save(UserEdit userEdit) {
+        User user = userRepository.findById(userEdit.getId()).get();
+        user.setLoginName(userEdit.getLoginName());
+        user.setName(userEdit.getName());
+        user.setEmail(userEdit.getEmail());
+        user.setEnabled(userEdit.isEnabled());
+        userRoleRepository.deleteByUserId(user.getId());
+        for (String role : userEdit.getRoles()) {
+            var userRole = new UserRole();
+            userRole.setUser(user);
+            userRole.setRole(role);
+            userRoleRepository.save(userRole);
+        }
         userRepository.save(user);
     }
 

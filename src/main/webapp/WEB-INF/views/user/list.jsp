@@ -81,7 +81,7 @@
         </thead>
         <tbody> 
           <c:forEach var="user" items="${ users }">
-            <tr>
+            <tr data-url="edit?id=${user.id }&${pagination.queryString}">
               <td>${ user.id }</td>
               <td>${ user.loginName }</td>
               <td>${ user.name }</td>
