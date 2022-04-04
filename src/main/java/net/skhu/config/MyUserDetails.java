@@ -34,7 +34,5 @@ public class MyUserDetails implements UserDetails {
 
         this.name = user.getName();
         this.email = user.getEmail();
-
-        System.out.println(user.getName());
     }
 }
