@@ -16,7 +16,7 @@ public class Pagination {
 
     public String getQueryString() {
         try {
-            return String.format("pg=%d&sz=%d&si=%d&st=%s", pg, sz, si,
+            return String.format("pg=%d&sz=%d&si=%d&od=%d&st=%s", pg, sz, si, od,
                     URLEncoder.encode(st, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
