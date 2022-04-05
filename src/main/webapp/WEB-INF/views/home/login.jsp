@@ -5,10 +5,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>쇼프 게시판</title>
-  <link rel="stylesheet" href="${R}res/css/common2.css" />
-  <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <%@ include file="/WEB-INF/views/include/head.jsp" %>
   <style>
     div.container2 { padding-top: 100px; }
     div.login-form {

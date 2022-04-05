@@ -5,8 +5,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>쇼프 게시판</title>
-  <link rel="stylesheet"  href="${R}res/css/common2.css" />
+  <%@ include file="/WEB-INF/views/include/head.jsp" %>
   <style>
     div.panel { width: 1100px; }
     select:nth-child(1) { margin-right: 100px; }    

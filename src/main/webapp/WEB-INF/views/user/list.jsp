@@ -7,10 +7,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>쇼프 게시판</title>
-  <link rel="stylesheet"  href="${R}res/css/common2.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="${R}res/js/common2.js"></script>
+  <%@ include file="/WEB-INF/views/include/head.jsp" %>
   <style>
     div.panel { width: 1100px; }
     select:nth-child(1) { margin-right: 100px; }    
