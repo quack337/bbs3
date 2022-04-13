@@ -33,12 +33,30 @@ public class UserController {
         return "user/edit";
     }
 
-    @PostMapping("edit")
+    @PostMapping(value="edit", params="cmd=save")
     public String edit(Model model, Pagination pagination,
             @Valid UserEdit userEdit, BindingResult bindingResult) {
-        if (userService.hasErrors(userEdit, bindingResult) == false) {
-            userService.save(userEdit);
+        try {
+            if (userService.hasErrors(userEdit, bindingResult) == false) {
+                userService.save(userEdit);
+                return "redirect:list?" + pagination.getQueryString();
+            }
+        }
+        catch (Exception exception) {
+            bindingResult.reject(null, "저장할 수 없습니다.");
+        }
+        return "user/edit";
+    }
+
+    @PostMapping(value="edit", params="cmd=delete")
+    public String delete(Model model, Pagination pagination,
+            @Valid UserEdit userEdit, BindingResult bindingResult) {
+        try {
+            userService.deleteById(userEdit.getId());
             return "redirect:list?" + pagination.getQueryString();
+        }
+        catch (Exception exception) {
+            bindingResult.reject(null, "삭제할 수 없습니다.");
         }
         return "user/edit";
     }

@@ -61,8 +61,12 @@
           <label>활성화:</label>
           <form:checkbox path="enabled" />
         </div>
-        <button type="submit" class="btn2 blue"><i class="fa fa-check"></i> 저장</button>
-        <a href="list?${pagination.queryString}" class="btn2"><i class="fa fa-times"></i> 취소</a>
+        <div class="error"><form:errors /></div>
+        <button type="submit" class="btn2 blue" name="cmd" value="save">
+                <i class="fa fa-check"></i> 저장</button>
+        <button type="submit" class="btn2 red" name="cmd" value="delete" data-confirm-delete>
+                <i class="fa fa-trash"></i> 삭제</button>
+        <a href="list?${pagination.queryString}" class="btn2"><i class="fa fa-times"></i> 취소</a>        
       </form:form>
    
     </div>
