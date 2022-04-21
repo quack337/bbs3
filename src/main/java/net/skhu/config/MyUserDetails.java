@@ -21,8 +21,7 @@ public class MyUserDetails implements UserDetails {
     final boolean isEnabled;
     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-    final String name;
-    final String email;
+    final User user;
 
     public MyUserDetails(User user) {
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -32,7 +31,6 @@ public class MyUserDetails implements UserDetails {
         this.password = user.getPassword();
         this.isEnabled = user.isEnabled();
 
-        this.name = user.getName();
-        this.email = user.getEmail();
+        this.user = user;
     }
 }

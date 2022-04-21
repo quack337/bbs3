@@ -8,6 +8,7 @@
       <li data-url="${R}signUp" class="right" >회원가입</li>                  
     </sec:authorize>
     <sec:authorize access="authenticated">
+      <li data-url="${R}article/list?bd=1">공지사항</li>
       <li> 시스템 관리      
         <ul>
           <li data-url="${R}user/list">사용자 목록</li>

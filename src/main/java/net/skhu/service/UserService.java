@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import net.skhu.config.ModelMapperConfig.MyModelMapper;
+import net.skhu.config.MyUserDetails;
 import net.skhu.entity.User;
 import net.skhu.entity.UserRole;
 import net.skhu.model.Pagination;
@@ -120,5 +122,11 @@ public class UserService {
 
     public void deleteById(int id) {
         userRepository.deleteById(id);
+    }
+
+    public User getCurrentUser() {
+        var myUserDetail = (MyUserDetails)SecurityContextHolder.getContext()
+                                                               .getAuthentication().getPrincipal();
+        return myUserDetail.getUser();
     }
 }
