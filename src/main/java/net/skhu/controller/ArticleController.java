@@ -58,4 +58,28 @@ public class ArticleController {
         model.addAttribute("board", boardService.findById(pagination.getBd()));
         return "article/create";
     }
+
+    @GetMapping("edit")
+    public String edit(Model model, int id, Pagination pagination) {
+        model.addAttribute("board", boardService.findById(pagination.getBd()));
+        model.addAttribute("articleEdit", articleService.findById2(id));
+        return "article/edit";
+    }
+
+    @PostMapping("edit")
+    public String edit(Model model, Pagination pagination,
+            @Valid ArticleEdit articleEdit, BindingResult bindingResult) {
+        try {
+            if (bindingResult.hasErrors() == false) {
+                articleService.update(articleEdit);
+                return "redirect:detail?id=" + articleEdit.getId() + "&" + pagination.getQueryString();
+            }
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+            bindingResult.reject(null, "저장할 수 없습니다.");
+        }
+        model.addAttribute("board", boardService.findById(pagination.getBd()));
+        return "article/edit";
+    }
  }

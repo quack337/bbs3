@@ -14,6 +14,7 @@
     article div.header { border-bottom: 1px solid lightgray; padding-bottom: 5px; margin-bottom: 20px; }
     article div.header span { margin-right: 50px; }
     article div.body { line-height: 2; margin-bottom: 30px; }
+    article .btn2 { margin-right: 5px; }
   </style>
 </head>
 
@@ -29,6 +30,8 @@
   <article>
     <a class="btn2 small right" href="list?${pagination.queryString}">
       <i class="fa fa-list-ul"></i> 목록으로</a>
+    <a class="btn2 small right blue" href="edit?id=${article.id}&${pagination.queryString}">
+      <i class="fa fa-pencil-square-o"></i> 수정</a>      
     <h2>${ article.title }</h2>
     <div class="header">
        <span>${ article.userName }</span>

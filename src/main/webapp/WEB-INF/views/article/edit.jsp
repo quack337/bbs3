@@ -40,7 +40,7 @@
       <form:errors path="body" class="error" />
       <form:errors path="*" class="error" />
       
-      <a class="btn2 small right" href="list?${pagination.queryString}">
+      <a class="btn2 small right" href="detail?id=${articleEdit.id}&${pagination.queryString}">
         <i class="fa fa-times"></i> 취소</a>
       <button class="btn2 small right blue" type="submit">
         <i class="fa fa-check"></i> 저장</button>

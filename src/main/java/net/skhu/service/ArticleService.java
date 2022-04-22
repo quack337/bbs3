@@ -34,6 +34,11 @@ public class ArticleService {
         return modelMapper.map(article, ArticleDto.class);
     }
 
+    public ArticleEdit findById2(int id) {
+        var article = articleRepository.findById(id).get();
+        return modelMapper.map(article, ArticleEdit.class);
+    }
+
     public List<ArticleDto> findAll(Pagination pagination) {
         int pg = pagination.getPg() - 1, sz = pagination.getSz(),
             si = pagination.getSi(), bd = pagination.getBd();
@@ -72,6 +77,16 @@ public class ArticleService {
         article.setModifiedTime(new Date());
         articleRepository.save(article);
         return article.getId();
+    }
+
+    @Transactional
+    public void update(ArticleEdit articleEdit) {
+        Article article;
+        article = articleRepository.findById(articleEdit.getId()).get();
+        article.setTitle(articleEdit.getTitle());
+        article.setBody(articleEdit.getBody());
+        article.setModifiedTime(new Date());
+        articleRepository.save(article);
     }
 
 }
