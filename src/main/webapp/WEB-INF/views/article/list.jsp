@@ -11,7 +11,7 @@
   <%@ include file="/WEB-INF/views/include/head.jsp" %>
   <style>
     div.panel { width: 1100px; }
-    select:nth-child(1) { margin-left: 200px; }
+    select:nth-child(1) { margin-right: 150px; }
     table {     
       width: 100%; margin: 10px 0px 20px 0px;
       border-collapse: collapse;
@@ -39,17 +39,7 @@
     <div class="panel-body">
     
       <form:form method="get" modelAttribute="pagination">
-        <form:select path="si">
-          <form:option value="0" label="조회조건" />
-          <form:option value="1" label="제목" />
-          <form:option value="2" label="글쓴이" />
-        </form:select>
-        <form:input path="st" />
-        <form:hidden path="bd" value="${ pagination.bd }" />
-        <button type="submit" class="btn2 cyan small">조회</button>
-        <a class="btn2 small" href="list?bd=${pagination.bd}">초기화</a>
-
-        <form:select path="sz" class="right autosubmit">
+        <form:select path="sz" class="autosubmit">
           <form:option value="2" />
           <form:option value="3" />
           <form:option value="4" />
@@ -59,6 +49,20 @@
           <form:option value="30" />
           <form:option value="100" />
         </form:select>
+
+        <form:select path="si">
+          <form:option value="0" label="조회조건" />
+          <form:option value="1" label="제목" />
+          <form:option value="2" label="글쓴이" />
+        </form:select>
+        <form:input path="st" />
+        <form:hidden path="bd" value="${ pagination.bd }" />
+        <button type="submit" class="btn2 cyan small">
+          <i class="fa fa-search"></i> 조회</button>
+        <a class="btn2 small" href="list?bd=${pagination.bd}">초기화</a>
+
+        <a class="btn2 blue small right" href="create?${pagination.queryString}">
+          <i class="fa fa-pencil-square-o"></i> 글 등록</a>
       </form:form>
     
       <table>

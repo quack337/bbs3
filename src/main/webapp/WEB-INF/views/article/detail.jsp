@@ -23,18 +23,18 @@
 <div class="container2">
 
   <div class="nav">
-    &gt; 게시판 &gt; 공지사항
+    &gt; 게시판 &gt; ${ board.title }
   </div>
 
   <article>
-    <a class="btn2 small right" href="list?${pagination.queryString}">목록으로</a>
+    <a class="btn2 small right" href="list?${pagination.queryString}">
+      <i class="fa fa-list-ul"></i> 목록으로</a>
     <h2>${ article.title }</h2>
     <div class="header">
        <span>${ article.userName }</span>
        <span><fmt:formatDate value="${ article.modifiedTime }" pattern="yyyy-MM-dd HH:mm:ss" /></span>
     </div>
     <div class="body">${ article.body }</div>
-    <a class="btn2 small" href="list?${pagination.queryString}">목록으로</a>
   </article>  
   
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
