@@ -89,4 +89,7 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
+    public void deleteById(int id) {
+        articleRepository.deleteById(id);
+    }
 }

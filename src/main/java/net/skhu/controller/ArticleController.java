@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import net.skhu.model.ArticleEdit;
 import net.skhu.model.Pagination;
 import net.skhu.service.ArticleService;
@@ -81,5 +83,18 @@ public class ArticleController {
         }
         model.addAttribute("board", boardService.findById(pagination.getBd()));
         return "article/edit";
+    }
+
+    @GetMapping("delete")
+    public String delete(RedirectAttributes attributes, int id, Pagination pagination) {
+        try {
+            articleService.deleteById(id);
+            return "redirect:list?" + pagination.getQueryString();
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+            attributes.addFlashAttribute("error", "삭제할 수 없습니다.");
+            return "redirect:detail?id=" + id + "&" + pagination.getQueryString();
+        }
     }
  }
