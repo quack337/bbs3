@@ -61,8 +61,10 @@
           <i class="fa fa-search"></i> 조회</button>
         <a class="btn2 small" href="list?bd=${pagination.bd}">초기화</a>
 
-        <a class="btn2 blue small right" href="create?${pagination.queryString}">
-          <i class="fa fa-pencil-square-o"></i> 글 등록</a>
+        <c:if test="${ permission.createGranted }">
+          <a class="btn2 blue small right" href="create?${pagination.queryString}">
+            <i class="fa fa-pencil-square-o"></i> 글 등록</a>
+        </c:if>
       </form:form>
     
       <table>

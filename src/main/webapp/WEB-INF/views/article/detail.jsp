@@ -31,11 +31,15 @@
     <div class="error">${ error }</div>  
     <a class="btn2 small right" href="list?${pagination.queryString}">
       <i class="fa fa-list-ul"></i> 목록으로</a>
-    <a class="btn2 small right red" 
-       href="delete?id=${article.id}&${pagination.queryString}" data-confirm-delete>
-      <i class="fa fa-trash-o"></i> 삭제</a>
-    <a class="btn2 small right blue" href="edit?id=${article.id}&${pagination.queryString}">
-      <i class="fa fa-pencil-square-o"></i> 수정</a>      
+    <c:if test="${ permission.deleteGranted }">
+      <a class="btn2 small right red" 
+         href="delete?id=${article.id}&${pagination.queryString}" data-confirm-delete>
+        <i class="fa fa-trash-o"></i> 삭제</a>
+    </c:if>
+    <c:if test="${ permission.updateGranted }">
+      <a class="btn2 small right blue" href="edit?id=${article.id}&${pagination.queryString}">
+        <i class="fa fa-pencil-square-o"></i> 수정</a>
+    </c:if>              
     <h2>${ article.title }</h2>
     <div class="header">
        <span>${ article.userName }</span>
