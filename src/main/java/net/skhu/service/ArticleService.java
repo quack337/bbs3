@@ -17,6 +17,7 @@ import net.skhu.entity.Board;
 import net.skhu.model.ArticleDto;
 import net.skhu.model.ArticleEdit;
 import net.skhu.model.Pagination;
+import net.skhu.model.Permission;
 import net.skhu.repository.ArticleRepository;
 import net.skhu.repository.BoardRepository;
 
@@ -35,9 +36,31 @@ public class ArticleService {
         return modelMapper.map(article, ArticleDto.class);
     }
 
-    public ArticleEdit findById2(int id) {
+    public ArticleEdit findByIdToEdit(int id) {
         var article = articleRepository.findById(id).get();
         return modelMapper.map(article, ArticleEdit.class);
+    }
+
+    public Permission getCurrentUserPermission() {
+        return getCurrentUserPermission(0);
+    }
+
+    public Permission getCurrentUserPermission(int articleId) {
+    	var permission = new Permission();
+    	permission.setReadGranted(true);
+    	permission.setCreateGranted(userService.getCurrentUser() != null);
+
+    	var article = articleRepository.findById(articleId).orElse(null);
+    	if (article != null) {
+    	    permission.setUpdateGranted(isCurrentUserAuthor(article));
+    	    permission.setDeleteGranted(userService.isCurrentUserAdmin() || isCurrentUserAuthor(article));
+    	}
+    	return permission;
+    }
+
+    public boolean isCurrentUserAuthor(Article article) {
+    	return userService.getCurrentUser() != null &&
+    	       article.getUser().getId() == userService.getCurrentUser().getId();
     }
 
     public List<ArticleDto> findAll(Pagination pagination) {

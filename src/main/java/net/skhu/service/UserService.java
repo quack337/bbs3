@@ -115,8 +115,17 @@ public class UserService {
     }
 
     public User getCurrentUser() {
-        var myUserDetail = (MyUserDetails)SecurityContextHolder.getContext()
-                                                               .getAuthentication().getPrincipal();
-        return myUserDetail.getUser();
+        var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof MyUserDetails) return ((MyUserDetails)principal).getUser();
+        return null;
+    }
+
+    public boolean isCurrentUserAdmin() {
+        User user = getCurrentUser();
+        if (user == null) return false;
+    	for (var userRole : user.getUserRoles())
+    		if (userRole.getRole().equals("ROLE_ADMIN"))
+    			return true;
+    	return false;
     }
 }
