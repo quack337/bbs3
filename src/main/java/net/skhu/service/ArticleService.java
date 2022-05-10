@@ -3,6 +3,8 @@ package net.skhu.service;
 import java.util.Date;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.skhu.config.ModelMapperConfig.MyModelMapper;
 import net.skhu.entity.Article;
 import net.skhu.entity.Board;
 import net.skhu.model.ArticleDto;
@@ -25,7 +26,7 @@ public class ArticleService {
     @Autowired UserService userService;
     @Autowired ArticleRepository articleRepository;
     @Autowired BoardRepository boardRepository;
-    @Autowired MyModelMapper modelMapper;
+    @Autowired ModelMapper modelMapper;
 
     private static Sort orderBy = Sort.by(Sort.Direction.DESC, "id");
 
@@ -53,13 +54,7 @@ public class ArticleService {
             page = articleRepository.findByBoardId(bd, pageRequest);
         pagination.setRecordCount((int)page.getTotalElements());
         List<Article> articleEntities = page.getContent();
-        List<ArticleDto> articleDtos = modelMapper.mapList(articleEntities, ArticleDto.class);
-        for (int i = 0; i < articleDtos.size(); ++i) {
-            Article article = articleEntities.get(i);
-            ArticleDto articleDto = articleDtos.get(i);
-            articleDto.setUserName(article.getUser().getName());
-        }
-        return articleDtos;
+        return modelMapper.map(articleEntities, new TypeToken<List<ArticleDto>>() {}.getType());
     }
 
     @Transactional
